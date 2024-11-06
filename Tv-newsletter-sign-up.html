@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast TV Newsletter Sign-Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #004d80;
+        }
+
+        input[type="text"], input[type="email"] {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f73;
+        }
+
+        .confirmation {
+            margin-top: 20px;
+            color: #2a6f97;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sign Up for Weather Forecast TV Newsletter</h1>
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <button onclick="signUp()">Sign Up</button>
+        <div id="confirmation" class="confirmation"></div>
+    </div>
+    <script>
+        function signUp() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const confirmation = document.getElementById('confirmation');
+
+            if (name && email) {
+                confirmation.textContent = `Thank you, ${name}! You have successfully signed up for the weather forecast TV newsletter. Stay tuned for the latest updates.`;
+            } else {
+                confirmation.textContent = "Please enter both your name and a valid email.";
+                confirmation.style.color = "red";
+            }
+        }
+    </script>
+</body>
+</html>

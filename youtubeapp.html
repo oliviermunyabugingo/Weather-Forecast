@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube - Weather Forecast in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #FF0000;
+        }
+
+        button {
+            background-color: #FF0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #cc0000;
+        }
+
+        .youtube-section {
+            text-align: left;
+            margin-top: 20px;
+            background-color: #d1f0ff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #b3e0ff;
+            color: #333;
+            display: none;
+        }
+
+        .youtube-link {
+            color: #FF0000;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YouTube Channel</h1>
+        <button onclick="displayYouTube()">Show YouTube Information</button>
+        <div id="youtubeSection" class="youtube-section">
+            <h2>Watch Our Weather Updates on YouTube</h2>
+            <p>Subscribe to our YouTube channel for comprehensive weather forecasts, educational content, and weather-related news in Rwanda. Click the link below to visit:</p>
+            <a href="https://www.youtube.com/WeatherForecastRwanda" target="_blank" class="youtube-link">Visit Our YouTube Channel</a>
+            <p>Don't forget to subscribe and turn on notifications to stay informed!</p>
+        </div>
+    </div>
+    <script>
+        function displayYouTube() {
+            const youtubeSection = document.getElementById('youtubeSection');
+            if (youtubeSection.style.display === "none" || youtubeSection.style.display === "") {
+                youtubeSection.style.display = "block";
+            } else {
+                youtubeSection.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

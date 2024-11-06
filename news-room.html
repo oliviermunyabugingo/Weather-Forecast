@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast News Room in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 700px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #004d80;
+        }
+
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f73;
+        }
+
+        .news-item {
+            text-align: left;
+            background-color: #d1f0ff;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #b3e0ff;
+        }
+
+        .news-item h3 {
+            margin: 0 0 5px;
+            color: #005073;
+        }
+
+        .news-item p {
+            margin: 0;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Forecast News Room in Rwanda</h1>
+        <button onclick="displayNews()">Show Latest News</button>
+        <div id="news-container"></div>
+    </div>
+    <script>
+        function displayNews() {
+            const news = [
+                {
+                    title: "Heavy Rainfall Expected in Northern Rwanda",
+                    content: "Meteorologists warn that heavy rainfall is expected in the northern regions of Rwanda over the next few days. Residents are advised to take precautions to avoid potential flooding."
+                },
+                {
+                    title: "Dry Season Coming to an End",
+                    content: "The current dry season is expected to conclude by mid-November, with forecasts indicating an increase in rainfall patterns across the country."
+                },
+                {
+                    title: "New Weather Monitoring Station Launched",
+                    content: "A new weather monitoring station has been launched in Kigali to improve real-time weather tracking and forecasting capabilities."
+                },
+                {
+                    title: "Tips for Farmers During the Rainy Season",
+                    content: "Experts recommend farmers to prepare their fields and consider water management strategies as the rainy season approaches."
+                }
+            ];
+
+            const newsContainer = document.getElementById('news-container');
+            newsContainer.innerHTML = ""; // Clear existing news
+
+            news.forEach(function(item) {
+                const newsItem = document.createElement('div');
+                newsItem.classList.add('news-item');
+
+                const newsTitle = document.createElement('h3');
+                newsTitle.textContent = item.title;
+
+                const newsContent = document.createElement('p');
+                newsContent.textContent = item.content;
+
+                newsItem.appendChild(newsTitle);
+                newsItem.appendChild(newsContent);
+
+                newsContainer.appendChild(newsItem);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App & Info Site</title>
+    <style>
+         body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #aae1f7;
+        }
+
+        header, footer {
+            background-color: #0e0615;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            left: 0;
+            z-index: 1000;
+        }
+
+        header {
+            top: 0;
+        }
+
+        footer {
+            bottom: 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 70px 20px 70px 20px;
+        }
+
+        section {
+            display: none;
+            position: relative;
+        }
+
+        section.active {
+            display: block;
+        }
+
+        #weather-container {
+            background: rgba(255, 255, 255, 0.3);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .content img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .forecast-image {
+            margin-top: 20px;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        #contact {
+            background-image: url("D:\weather-download.jpeg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+            border-radius: 10px;
+        }
+
+        /* New Styles for the Added Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+        }
+
+        .header button {
+            background-color: white;
+            color: #4CAF50;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .team-section {
+            margin-top: 30px;
+        }
+
+        .team-member {
+            margin-bottom: 20px;
+        }
+
+        .team-member h3 {
+            margin: 5px 0;
+            color: #0056b3;
+        }
+
+        .main {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            padding: 80px 20px 20px 20px; /* Adjusted for header */
+        }
+
+        .map {
+            width: 1100px;
+            height: 400px;
+            background-color: #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: Url("D:\weather-map.png");
+        }
+
+        footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            z-index: 1;
+            position: relative;
+        }
+
+        .social-media a img {
+            width: 24px;
+            margin: 0 10px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #000;
+            margin: 0 5px;
+        }
+
+        .legal-links p, .legal-links a {
+            font-size: small;
+            color: #555;
+        }
+
+        .legal-links a {
+            text-decoration: none;
+            margin: 0 5px;
+        }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        function getweather() {
+            const apikey = 'YOUR-API-KEY';
+            const city = document.getElementById('city').value;
+
+            if (!city) {
+                alert('Please select a district');
+                return;
+            }
+
+            const currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`;
+            const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apikey}`;
+
+            fetch(currentWeatherUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.cod !== 200) {
+                        throw new Error(data.message);
+                    }
+                    displayWeather(data);
+                })
+                .catch(error => {
+                    console.error('Error fetching current weather data:', error);
+                    alert('Error fetching current weather data. Please try again.');
+                });
+
+            fetch(forecastUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.cod !== '200') {
+                        throw new Error(data.message);
+                    }
+                    displayHourlyForecast(data.list);
+                })
+                .catch(error => {
+                    console.error('Error fetching hourly forecast data:', error);
+                    alert('Error fetching hourly forecast data. Please try again.');
+                });
+        }
+
+        function displayWeather(data) {
+            const tempDivInfo = document.getElementById('temp-div');
+            const weatherInfoDiv = document.getElementById('weather-info');
+            const weatherIcon = document.getElementById('weather-icon');
+
+            tempDivInfo.innerHTML = '';
+            weatherInfoDiv.innerHTML = '';
+
+            const cityName = data.name;
+            const temperature = Math.round(data.main.temp - 273.15);
+            const description = data.weather[0].description;
+            const iconCode = data.weather[0].icon;
+            const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@4x.png`;
+
+            const temperatureHTML = `<p>${temperature}°C</p>`;
+            const weatherHTML = `<p>${cityName}</p><p>${description}</p>`;
+
+            tempDivInfo.innerHTML = temperatureHTML;
+            weatherInfoDiv.innerHTML = weatherHTML;
+            weatherIcon.src = iconUrl;
+            weatherIcon.alt = description;
+            showImage();
+        }
+
+        function displayHourlyForecast(hourlyData) {
+            const hourlyForecastDiv = document.getElementById('hourly-forecast');
+            hourlyForecastDiv.innerHTML = '';
+            const next24Hours = hourlyData.slice(0, 8);
+
+            next24Hours.forEach(item => {
+                const dateTime = new Date(item.dt * 1000);
+                const hour = dateTime.getHours();
+                const temperature = Math.round(item.main.temp - 273.15);
+                const windSpeed = item.wind.speed;
+                const humidity = item.main.humidity;
+                const iconCode = item.weather[0].icon;
+                const iconUrl = `https://openweathermap.org/img/wn/${iconCode}.png`;
+
+                const hourlyItemHtml = `
+                    <div class="hourly-item">
+                        <span>${hour}:00</span>
+                        <img src="${iconUrl}" alt="Hourly Weather Icon">
+                        <span>${temperature}°C</span>
+                        <span>Wind: ${windSpeed} m/s</span>
+                        <span>Humidity: ${humidity}%</span>
+                    </div>`;
+                hourlyForecastDiv.innerHTML += hourlyItemHtml;
+            });
+        }
+
+        function showImage() {
+            const weatherIcon = document.getElementById('weather-icon');
+            weatherIcon.style.display = 'block';
+        }
+
+        function play() {
+            alert('Play button clicked');
+        }
+
+        function stop() {
+            alert('Stop button clicked');
+        }
+    </script>
+</head>
+<body onload="showSection('home')">
+    <header>
+        <nav>
+            <a href="#" onclick="showSection('home')">Home</a>
+            <a href="#" onclick="showSection('about')">About Us</a>
+            <a href="#" onclick="showSection('contact')">Contact</a>
+            <a href="#" onclick="showSection('activities')">Activities</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="active">
+            <div id="weather-container">
+                <h2>Weather App</h2>
+                <select id="city">
+                    <option value="">Select District</option>
+                    <option value="Nyarugenge">Nyarugenge</option>
+                    <option value="Gasabo">Gasabo</option>
+                    <option value="Kicukiro">Kicukiro</option>
+                    <option value="Muhanga">Muhanga</option>
+                    <option value="Ruhango">Ruhango</option>
+                    <option value="Kamonyi">Kamonyi</option>
+                    <option value="Nyanza">Nyanza</option>
+                    <option value="Huye">Huye</option>
+                    <option value="Gisagara">Gisagara</option>
+                    <option value="Nyamagabe">Nyamagabe</option>
+                    <option value="Nyaruguru">Nyaruguru</option>
+                    <option value="Rulindo">Rulindo</option>
+                    <option value="Gicumbi">Gicumbi</option>
+                    <option value="Burera">Burera</option>
+                    <option value="Musanze">Musanze</option>
+                    <option value="Gakenke">Gakenke</option>
+                    <option value="Nyabihu">Nyabihu</option>
+                    <option value="Rubavu">Rubavu</option>
+                    <option value="Rutsiro">Rutsiro</option>
+                    <option value="Karongi">Karongi</option>
+                    <option value="Ngororero">Ngororero</option>
+                    <option value="Rusizi">Rusizi</option>
+                    <option value="Nyamasheke">Nyamasheke</option>
+                    <option value="Nyagatare">Nyagatare</option>
+                    <option value="Gatsibo">Gatsibo</option>
+                    <option value="Kayonza">Kayonza</option>
+                    <option value="Rwamagana">Rwamagana</option>
+                    <option value="Kirehe">Kirehe</option>
+                    <option value="Ngoma">Ngoma</option>
+                    <option value="Bugesera">Bugesera</option>
+                </select>
+                <button onclick="getweather()">Search</button>
+                <img id="weather-icon" alt="Weather Icon" style="display: none;">
+                <div id="temp-div"></div>
+                <div id="weather-info"></div>
+                <div id="hourly-forecast"></div>
+                <img class="forecast-image" src="D:\\forecast-image.jpg" alt="Rwanda Weather Forecast">
+            </div>
+
+            <!-- New section for Key Features -->
+            <div class="content" id="features">
+                <h2>Key Features</h2>
+                <ul>
+                    <li>Real-time weather updates for various districts in Rwanda.</li>
+                    <li>Detailed hourly forecasts for the next 24 hours.</li>
+                    <li>User-friendly interface for easy navigation.</li>
+                    <li>Weather icons and descriptions for better understanding.</li>
+                    <li>Responsive design for mobile and desktop devices.</li>
+                    <p>Rwanda’s weather forecasting integrates traditional meteorological data with modern technology</p>
+                    <p>to ensure that forecasts are as accurate and helpful as possible for its citizens and industries.</p>
+                </ul>
+                <img src="D:\features-weather app.jpg" alt="Key Features of Weather App" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+            </div>
+
+            <!-- New Map and Activities Section -->
+            <div class="header">
+                <button onclick="play()">Play</button>
+                <div>Monday 04 Nov 9am</div>
+                <button onclick="stop()">Stop</button>
+            </div>
+            <div class="main">
+                <div class="map">Map with Rain and Snow</div>
+                <div class="activities">
+                    <p>Activities:</p>
+                    <ul>
+                        <li>Ski Resort Weather</li>
+                        <li>Surf Break Forecasts</li>
+                        <li>City Webcams</li>
+                        <li>Wind</li>
+                        <li>Weather Art</li>
+                        <li>Temperature Maps</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="content">
+                <h2>About Us</h2>
+                <p>Welcome to our Weather App! We provide real-time weather updates and forecasts to help you plan your day. Our app is designed to be user-friendly and informative, offering weather data for various districts in Rwanda.</p>
+                <img src="D:\about-image.gpj.png"alt="About Us Image" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+
+                <div class="team-section">
+                    <h2>Meet Our Team</h2>
+                    <div class="team-member">
+                        <h3>Munyabugingo Olivier</h3>
+                        <p>Lead Developer - Olivier is passionate about building user-friendly web applications and has a strong background in full-stack development.</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>Hirwa Olivier</h3>
+                        <p>Weather Data Specialist - Hirwa ensures the accuracy and reliability of the weather data by constantly updating and verifying data sources.</p>
+                    </div>
+                    <div class="team-member">
+                        <h3>Hirwa Fabrice</h3>
+                        <p>UI/UX Designer - Fabrice focuses on creating a seamless and intuitive user experience for our app's users.</p>
+                    </div>
+                </div>
+                
+                <p>We hope our Weather App becomes your go-to source for checking the weather. Your feedback is important to us, so please feel free to reach out with any suggestions or questions.</p>
+            </div>
+
+                <img src="D:\weather-other-about-us.jpeg"alt="About Us Image" style="max-width: 100%; border-radius: 10px; margin-top: 20px;">
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="content">
+                <h2>Contact Us</h2>
+                <p>If you have any questions or feedback, feel free to reach out to us!</p>
+                <p>Email: munyabugingoolivier4@gmail.com</p>
+                <p>Phone: (+250) 783813720</p>
+                <p>Instagram: munyabugingo-official</p>
+                <p>Facebook: Olivier Munyabugingo</p>
+                <p>Twitter: @Munyabugingo</p>
+                
+            </div>
+        </section>
+
+        <section id="activities" class="content">
+            <h2>Activities</h2>
+            <p>Explore various activities based on the weather conditions!</p>
+            <p>Weather forecasting involves a range of activities aimed at predicting atmospheric conditions.</p>
+            <p>Meteorologists start by gathering data from multiple sources, such as weather stations, satellites, and radar systems, to monitor temperature, humidity, wind patterns, and air pressure. </p>
+            <p>Advanced computer models then process this data to simulate weather behavior and predict future conditions.</p>
+            <p>Forecasters analyze these simulations, combine them with historical data, and apply their expertise to issue accurate weather forecasts.</p>
+            <p>These predictions help inform the public and industries about upcoming weather events, from daily conditions to severe weather warnings,</p>
+            <p> ensuring safety and preparedness for potential impacts such as storms, floods, or heatwaves.</p>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-media">
+            <a href="D:\facebooklapp.html"><img src="facebook.jpeg" alt="Facebook"></a>
+            <a href="D:\twitterapp.html"><img src="twitter.jpg" alt="Twitter"></a>
+            <a href="D:\youtubeapp.html"><img src="youtube.webp" alt="YouTube"></a>
+            <a href="D:\instagramapp.html"><img src="instagram.jpeg" alt="Instagram"></a>
+        </div>
+        
+        <div class="footer-links">
+            <a href="D:\feedback.html">Feedback</a> |
+            <a href="D:\mission.html">Mission</a> |
+            <a href="D:\career.html">Careers</a> |
+            <a href="D:\news-room.html">News Room</a> |
+            <a href="#">Advertise With Us</a> |
+            <a href="D:\Tv-newsletter-sign-up.html">TV Newsletter Sign Up</a>
+        </div>
+        <div class="legal-links">
+            <p><strong>The Weather Company</strong></p>
+            <p><small><em>We recognize our responsibility to use data and technology for good.</em></small></p>
+            <a href="D:\Terms-of-use.html">Terms of Use</a> |
+            <a href="D:\privacy-policy.html">Privacy Policy</a> |
+            <a href="D:\adchoices.html">AdChoices</a> |
+            <a href="D:\Accessibility-statement.html">Accessibility Statement</a>
+            <p><small>We may use or share your data with our data vendors. Take control of your data.</small></p>
+            <a href="D:\data-rights.html"><strong>Data Rights</strong></a>
+        </div>
+    </footer>
+</body>
+</html>

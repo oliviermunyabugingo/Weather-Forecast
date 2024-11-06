@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook - Weather Forecast in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #004d80;
+        }
+
+        button {
+            background-color: #4267B2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #365899;
+        }
+
+        .facebook-section {
+            text-align: left;
+            margin-top: 20px;
+            background-color: #d1f0ff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #b3e0ff;
+            color: #333;
+            display: none;
+        }
+
+        .facebook-link {
+            color: #4267B2;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Facebook Page</h1>
+        <button onclick="displayFacebook()">Show Facebook Information</button>
+        <div id="facebookSection" class="facebook-section">
+            <h2>Connect with Us on Facebook</h2>
+            <p>Stay updated with the latest weather forecasts and news in Rwanda by following our official Facebook page. Click the link below to visit:</p>
+            <a href="https://www.facebook.com/WeatherForecastRwanda" target="_blank" class="facebook-link">Visit Our Facebook Page</a>
+            <p>Join our community to receive regular updates, weather tips, and more!</p>
+        </div>
+    </div>
+    <script>
+        function displayFacebook() {
+            const facebookSection = document.getElementById('facebookSection');
+            if (facebookSection.style.display === "none" || facebookSection.style.display === "") {
+                facebookSection.style.display = "block";
+            } else {
+                facebookSection.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

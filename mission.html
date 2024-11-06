@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast Mission in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #004d80;
+        }
+
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f73;
+        }
+
+        p {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mission of Weather Forecasting in Rwanda</h1>
+        <button onclick="displayMission()">Show Mission</button>
+        <p id="mission-text"></p>
+    </div>
+    <script>
+        function displayMission() {
+            const missionText = document.getElementById('mission-text');
+            missionText.textContent = "The mission of weather forecasting in Rwanda is to provide accurate and timely weather information to enhance safety, support agricultural activities, improve disaster preparedness, and contribute to the overall well-being of the population. By leveraging advanced meteorological tools and data analysis, Rwanda's weather services aim to deliver essential forecasts and warnings to protect life, property, and support sustainable development.";
+        }
+    </script>
+</body>
+</html>

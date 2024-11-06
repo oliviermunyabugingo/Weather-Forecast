@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Rights - Weather Forecast in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #004d80;
+        }
+
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f73;
+        }
+
+        .data-rights {
+            text-align: left;
+            margin-top: 20px;
+            background-color: #d1f0ff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #b3e0ff;
+            color: #333;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Data Rights</h1>
+        <button onclick="displayDataRights()">Show Data Rights</button>
+        <div id="dataRights" class="data-rights">
+            <h2>Data Rights Policy for Weather Forecast Services</h2>
+            <p>We respect your data rights and are committed to transparency about how we handle your information when using our weather forecast services in Rwanda:</p>
+            <ul>
+                <li><strong>Data Collection:</strong> We collect only the necessary data to provide weather updates and related services.</li>
+                <li><strong>Right to Access:</strong> You have the right to access your personal data that we store and understand how it is used.</li>
+                <li><strong>Right to Rectification:</strong> If you find any inaccuracies in your personal data, you have the right to request corrections.</li>
+                <li><strong>Right to Erasure:</strong> You may request the deletion of your personal data under certain conditions.</li>
+                <li><strong>Data Security:</strong> We use industry-standard practices to ensure your data is protected and secure.</li>
+                <li><strong>Third-Party Sharing:</strong> Your data is not shared with third parties unless required by law or with your explicit consent.</li>
+            </ul>
+            <p>If you have any questions or wish to exercise your data rights, please contact our data protection team through our support channels.</p>
+        </div>
+    </div>
+    <script>
+        function displayDataRights() {
+            const dataRights = document.getElementById('dataRights');
+            if (dataRights.style.display === "none" || dataRights.style.display === "") {
+                dataRights.style.display = "block";
+            } else {
+                dataRights.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Statement - Weather Forecast in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #004d80;
+        }
+
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f73;
+        }
+
+        .accessibility {
+            text-align: left;
+            margin-top: 20px;
+            background-color: #d1f0ff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #b3e0ff;
+            color: #333;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Accessibility Statement</h1>
+        <button onclick="displayAccessibility()">Show Accessibility Statement</button>
+        <div id="accessibility" class="accessibility">
+            <h2>Accessibility Statement for Weather Forecast Services</h2>
+            <p>We are committed to ensuring that our weather forecast services in Rwanda are accessible to everyone, including individuals with disabilities. This accessibility statement outlines our efforts:</p>
+            <ul>
+                <li><strong>Web Standards:</strong> We strive to adhere to the Web Content Accessibility Guidelines (WCAG) to provide a user-friendly experience.</li>
+                <li><strong>Accessible Design:</strong> Our website design incorporates features that enhance accessibility, such as text alternatives for images and proper contrast ratios.</li>
+                <li><strong>Keyboard Navigation:</strong> Users can navigate our site using keyboard shortcuts to facilitate access without a mouse.</li>
+                <li><strong>Screen Reader Compatibility:</strong> Our site is designed to be compatible with screen readers to assist visually impaired users.</li>
+                <li><strong>Feedback Mechanism:</strong> We welcome feedback on our accessibility efforts and encourage users to report any accessibility issues.</li>
+            </ul>
+            <p>If you have any questions or suggestions regarding our accessibility practices, please contact us through our support channels.</p>
+        </div>
+    </div>
+    <script>
+        function displayAccessibility() {
+            const accessibility = document.getElementById('accessibility');
+            if (accessibility.style.display === "none" || accessibility.style.display === "") {
+                accessibility.style.display = "block";
+            } else {
+                accessibility.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

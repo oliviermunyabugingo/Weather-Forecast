@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast Feedback in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 500px;
+        }
+
+        h1 {
+            color: #004d80;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            resize: none;
+        }
+
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f73;
+        }
+
+        .feedback-display {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d1f0ff;
+            border-radius: 5px;
+            color: #333;
+            border: 1px solid #b3e0ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Forecast Feedback in Rwanda</h1>
+        <textarea id="feedback-input" placeholder="Enter your feedback here..."></textarea>
+        <button onclick="displayFeedback()">Submit Feedback</button>
+        <div id="feedback-display" class="feedback-display" style="display: none;"></div>
+    </div>
+    <script>
+        function displayFeedback() {
+            const feedbackInput = document.getElementById('feedback-input').value;
+            const feedbackDisplay = document.getElementById('feedback-display');
+            
+            if (feedbackInput.trim() !== "") {
+                feedbackDisplay.textContent = "Your feedback: " + feedbackInput;
+                feedbackDisplay.style.display = "block";
+            } else {
+                alert("Please enter some feedback before submitting.");
+            }
+        }
+    </script>
+</body>
+</html>

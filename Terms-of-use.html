@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Use - Weather Forecast in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #004d80;
+        }
+
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f73;
+        }
+
+        .terms {
+            text-align: left;
+            margin-top: 20px;
+            background-color: #d1f0ff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #b3e0ff;
+            color: #333;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Terms of Use</h1>
+        <button onclick="displayTerms()">Show Terms of Use</button>
+        <div id="terms" class="terms">
+            <h2>Weather Forecast Terms of Use</h2>
+            <p>By accessing and using the weather forecast services in Rwanda, you agree to the following terms:</p>
+            <ul>
+                <li>The weather data provided is for informational purposes only and should not be relied upon for critical decision-making without independent verification.</li>
+                <li>The services are provided without any warranty of accuracy, completeness, or timeliness.</li>
+                <li>Users must not use the forecast data for illegal activities or actions that could endanger public safety.</li>
+                <li>The weather service reserves the right to modify the terms and conditions at any time without prior notice.</li>
+                <li>Unauthorized distribution of weather data without permission is prohibited.</li>
+            </ul>
+            <p>For more details, please contact the relevant weather service authorities in Rwanda.</p>
+        </div>
+    </div>
+    <script>
+        function displayTerms() {
+            const terms = document.getElementById('terms');
+            if (terms.style.display === "none" || terms.style.display === "") {
+                terms.style.display = "block";
+            } else {
+                terms.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

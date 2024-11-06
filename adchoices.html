@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdChoices - Weather Forecast in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #004d80;
+        }
+
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f73;
+        }
+
+        .adchoices {
+            text-align: left;
+            margin-top: 20px;
+            background-color: #d1f0ff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #b3e0ff;
+            color: #333;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AdChoices Policy</h1>
+        <button onclick="displayAdChoices()">Show AdChoices Policy</button>
+        <div id="adchoices" class="adchoices">
+            <h2>AdChoices for Weather Forecast Services</h2>
+            <p>We are committed to providing transparency regarding the advertisements you see when using our weather forecast services in Rwanda:</p>
+            <ul>
+                <li><strong>Personalized Advertising:</strong> Our service may use personalized advertising based on your preferences and usage.</li>
+                <li><strong>Ad Providers:</strong> We work with third-party ad providers who may collect information about your browsing activities.</li>
+                <li><strong>Opt-Out:</strong> You can opt-out of personalized advertising by adjusting your ad preferences through the settings of your browser or device.</li>
+                <li><strong>Data Usage:</strong> We do not share your personal information with advertisers unless explicitly stated.</li>
+                <li><strong>Cookies:</strong> Our ad partners may use cookies to enhance your experience and provide relevant ads.</li>
+            </ul>
+            <p>For more information, please refer to the privacy settings available in your browser or contact our support team.</p>
+        </div>
+    </div>
+    <script>
+        function displayAdChoices() {
+            const adChoices = document.getElementById('adchoices');
+            if (adChoices.style.display === "none" || adChoices.style.display === "") {
+                adChoices.style.display = "block";
+            } else {
+                adChoices.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

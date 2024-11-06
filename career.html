@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers in Weather Forecasting in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+
+        h1 {
+            color: #004d80;
+        }
+
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f73;
+        }
+
+        ul {
+            text-align: left;
+            margin-top: 20px;
+            padding: 0;
+            list-style-type: square;
+        }
+
+        li {
+            margin-bottom: 10px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Careers in Weather Forecasting in Rwanda</h1>
+        <button onclick="displayCareers()">Show Careers</button>
+        <ul id="careers-list" style="display: none;"></ul>
+    </div>
+    <script>
+        function displayCareers() {
+            const careers = [
+                "Meteorologist",
+                "Climate Analyst",
+                "Weather Data Scientist",
+                "Hydrologist",
+                "Agricultural Weather Advisor",
+                "Weather Presenter/Anchor",
+                "Environmental Consultant",
+                "Research Scientist in Meteorology",
+                "Disaster Management Officer",
+                "Air Quality Specialist"
+            ];
+
+            const careersList = document.getElementById('careers-list');
+            careersList.innerHTML = ""; // Clear the list before adding new items
+
+            careers.forEach(function(career) {
+                const listItem = document.createElement('li');
+                listItem.textContent = career;
+                careersList.appendChild(listItem);
+            });
+
+            careersList.style.display = "block";
+        }
+    </script>
+</body>
+</html>

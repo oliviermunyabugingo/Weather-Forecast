@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram - Weather Forecast in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #C13584;
+        }
+
+        button {
+            background-color: #C13584;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #9e2e6d;
+        }
+
+        .instagram-section {
+            text-align: left;
+            margin-top: 20px;
+            background-color: #ffe6f2;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ffb3d9;
+            color: #333;
+            display: none;
+        }
+
+        .instagram-link {
+            color: #C13584;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Instagram Page</h1>
+        <button onclick="displayInstagram()">Show Instagram Information</button>
+        <div id="instagramSection" class="instagram-section">
+            <h2>Follow Us on Instagram</h2>
+            <p>Stay visually informed with weather updates, stunning images, and stories related to weather in Rwanda. Click the link below to visit:</p>
+            <a href="https://www.instagram.com/WeatherForecastRwanda" target="_blank" class="instagram-link">Visit Our Instagram Page</a>
+            <p>Follow us for regular weather forecasts, interactive stories, and more!</p>
+        </div>
+    </div>
+    <script>
+        function displayInstagram() {
+            const instagramSection = document.getElementById('instagramSection');
+            if (instagramSection.style.display === "none" || instagramSection.style.display === "") {
+                instagramSection.style.display = "block";
+            } else {
+                instagramSection.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

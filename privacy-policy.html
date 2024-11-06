@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Weather Forecast in Rwanda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #e6f7ff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #004d80;
+        }
+
+        button {
+            background-color: #008cba;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005f73;
+        }
+
+        .policy {
+            text-align: left;
+            margin-top: 20px;
+            background-color: #d1f0ff;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #b3e0ff;
+            color: #333;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <button onclick="displayPolicy()">Show Privacy Policy</button>
+        <div id="policy" class="policy">
+            <h2>Privacy Policy for Weather Forecast Services</h2>
+            <p>Your privacy is important to us. This policy outlines how we handle your data when you use our weather forecast services in Rwanda:</p>
+            <ul>
+                <li><strong>Data Collection:</strong> We may collect personal information such as your name and contact details when you sign up for newsletters or use certain features.</li>
+                <li><strong>Usage Data:</strong> We collect non-personal data such as user interactions to improve our services.</li>
+                <li><strong>Data Protection:</strong> All collected data is secured using industry-standard encryption and security practices.</li>
+                <li><strong>Third-Party Sharing:</strong> We do not share your personal data with third parties unless required by law or to provide requested services.</li>
+                <li><strong>Cookies:</strong> Our service may use cookies to enhance your user experience. You can opt out of cookies through your browser settings.</li>
+                <li><strong>Policy Changes:</strong> We may update this policy from time to time, and any changes will be posted on this page.</li>
+            </ul>
+            <p>For any questions regarding this privacy policy, please contact us through our official channels.</p>
+        </div>
+    </div>
+    <script>
+        function displayPolicy() {
+            const policy = document.getElementById('policy');
+            if (policy.style.display === "none" || policy.style.display === "") {
+                policy.style.display = "block";
+            } else {
+                policy.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
